@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bash
+
+echo "Starting MiniDLNA Server."
+exec s6-setuidgid abc /usr/sbin/minidlnad -S -f /config/minidlna.conf -P /tmp/minidlna.pid
+

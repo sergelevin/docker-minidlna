@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv bash
+
+# check for preferences file, copy default if not found and exit out
+if [ ! -e "/config/minidlna.conf" ]; then
+mkdir -p /config/cache/minidlna /config/log
+cp /defaults/minidlna.conf /config/minidlna.conf
+chown -R abc:abc \
+	/config
+exit 0
+fi
+
+if [ ! -f "/config/minidlna.conf" ]; then
+echo "Possible migration from existing version detected, please be patient while we chown existing files"
+echo "This could take some time"
+chown abc:abc -R \
+	/config
+echo "chown operation completed"
+fi
